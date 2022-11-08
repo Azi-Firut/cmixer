@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cmixer/cmixer_body/presentation/manager/constant.dart';
 import 'package:cmixer/cmixer_body/presentation/pages/intro_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +15,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   double _fontSize = 2;
-  double _containerSize = 1;
+  double _containerSize = 1.5;
   double _textOpacity = 0.0;
   double _containerOpacity = 0.0;
 
@@ -28,8 +29,8 @@ class _SplashScreenState extends State<SplashScreen>
     _controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 3));
 
-    animation1 = Tween<double>(begin: 40, end: 20).animate(CurvedAnimation(
-        parent: _controller, curve: Curves.fastLinearToSlowEaseIn))
+    animation1 = Tween<double>(begin: 40, end: 20).animate(
+        CurvedAnimation(parent: _controller, curve: Curves.easeInOutCirc))
       ..addListener(() {
         setState(() {
           _textOpacity = 1.0;
@@ -40,13 +41,13 @@ class _SplashScreenState extends State<SplashScreen>
 
     Timer(const Duration(seconds: 2), () {
       setState(() {
-        _fontSize = 1.06;
+        _fontSize = 0.6;
       });
     });
 
     Timer(const Duration(seconds: 2), () {
       setState(() {
-        _containerSize = 2;
+        _containerSize = 6;
         _containerOpacity = 1;
       });
     });
@@ -67,22 +68,22 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(systemNavigationBarColor: Colors.blueGrey));
+        const SystemUiOverlayStyle(systemNavigationBarColor: kMainColor));
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: kMainColor,
       body: Stack(
         children: [
           Center(
             child: AnimatedOpacity(
               duration: const Duration(seconds: 3),
-              curve: Curves.fastLinearToSlowEaseIn,
+              curve: Curves.easeInOutCirc,
               opacity: _containerOpacity,
               child: AnimatedContainer(
                   duration: const Duration(seconds: 10),
-                  curve: Curves.fastLinearToSlowEaseIn,
+                  curve: Curves.easeInOutCirc,
                   height: _width / _containerSize,
                   width: _width / _containerSize,
                   alignment: Alignment.center,
@@ -104,7 +105,7 @@ class PageTransition extends PageRouteBuilder {
           transitionDuration: const Duration(milliseconds: 2000),
           transitionsBuilder: (context, animation, anotherAnimation, child) {
             animation = CurvedAnimation(
-              curve: Curves.fastLinearToSlowEaseIn,
+              curve: Curves.easeInOutCirc,
               parent: animation,
             );
             return Align(

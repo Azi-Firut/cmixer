@@ -1,3 +1,4 @@
+import 'package:cmixer/cmixer_body/presentation/manager/constant.dart';
 import 'package:flutter/material.dart';
 
 class MenuTextAnimation extends StatefulWidget {
@@ -27,7 +28,7 @@ class Amimation extends State<MenuTextAnimation>
         vsync: this, duration: Duration(milliseconds: widget.duration));
 
     // Defining both color and size animations
-    color = ColorTween(begin: Colors.indigo, end: Colors.white)
+    color = ColorTween(begin: kMainColor, end: Colors.white)
         .animate(CurvedAnimation(parent: controller, curve: Curves.easeInExpo));
     scale = Tween<double>(begin: 0.0, end: 1.8)
         .animate(CurvedAnimation(parent: controller, curve: Curves.easeIn));
@@ -51,14 +52,33 @@ class Amimation extends State<MenuTextAnimation>
   Widget build(BuildContext context) {
     return SizedBox(
       height: 30,
-      child: Text(
-        widget.text,
-        textScaleFactor: scale.value,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: color.value,
-        ),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 25,
+            height: 25,
+            child: Text(
+              widget.text,
+              textScaleFactor: scale.value,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: color.value,
+              ),
+            ),
+          ),
+          Center(
+            child: Text(
+              widget.text,
+              textScaleFactor: scale.value,
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: color.value,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
