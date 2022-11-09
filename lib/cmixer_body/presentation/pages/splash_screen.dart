@@ -15,7 +15,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   double _fontSize = 2;
-  double _containerSize = 3;
+  double _containerSize = 2.5;
   double _textOpacity = 0.0;
   double _containerOpacity = 0.0;
 
@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     Timer(const Duration(seconds: 2), () {
       setState(() {
-        _containerSize = 6;
+        _containerSize = 4;
         _containerOpacity = 1;
       });
     });
@@ -82,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen>
               curve: Curves.easeInCubic,
               opacity: _containerOpacity,
               child: AnimatedContainer(
-                  duration: const Duration(seconds: 10),
+                  duration: const Duration(seconds: 1),
                   curve: Curves.easeInOutCirc,
                   height: _width / _containerSize,
                   width: _width / _containerSize,
