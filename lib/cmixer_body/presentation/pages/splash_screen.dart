@@ -5,6 +5,8 @@ import 'package:cmixer/cmixer_body/presentation/pages/intro_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../generated/l10n.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -77,17 +79,38 @@ class _SplashScreenState extends State<SplashScreen>
       body: Stack(
         children: [
           Center(
-            child: AnimatedOpacity(
-              duration: const Duration(seconds: 2),
-              curve: Curves.easeInCubic,
-              opacity: _containerOpacity,
-              child: AnimatedContainer(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AnimatedOpacity(
+                  duration: const Duration(seconds: 2),
+                  curve: Curves.easeInCubic,
+                  opacity: _containerOpacity,
+                  child: AnimatedContainer(
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.easeInOutCirc,
+                      height: _width / _containerSize,
+                      width: _width / _containerSize,
+                      alignment: Alignment.center,
+                      child: Image.asset('assets/images/logo.png')),
+                ),
+                AnimatedOpacity(
                   duration: const Duration(seconds: 1),
-                  curve: Curves.easeInOutCirc,
-                  height: _width / _containerSize,
-                  width: _width / _containerSize,
-                  alignment: Alignment.center,
-                  child: Image.asset('assets/images/logo.png')),
+                  curve: Curves.easeInCubic,
+                  opacity: _containerOpacity,
+                  child: AnimatedContainer(
+                      duration: const Duration(seconds: 3),
+                      curve: Curves.easeInOutCirc,
+                      height: _width / _containerSize,
+                      width: _width / _containerSize,
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        S.of(context).splash_screen_text.toUpperCase(),
+                        textAlign: TextAlign.center,
+                        textScaleFactor: 0.8,
+                      )),
+                ),
+              ],
             ),
           ),
         ],
