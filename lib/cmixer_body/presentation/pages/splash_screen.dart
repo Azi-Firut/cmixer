@@ -102,10 +102,10 @@ class PageTransition extends PageRouteBuilder {
   PageTransition(this.page)
       : super(
           pageBuilder: (context, animation, anotherAnimation) => page,
-          transitionDuration: const Duration(milliseconds: 2000),
+          transitionDuration: const Duration(milliseconds: 1000),
           transitionsBuilder: (context, animation, anotherAnimation, child) {
             animation = CurvedAnimation(
-              curve: Curves.easeInOutCirc,
+              curve: Curves.easeInExpo,
               parent: animation,
             );
             return Align(
