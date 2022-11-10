@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:cmixer/cmixer_body/presentation/manager/constant.dart';
-import 'package:cmixer/cmixer_body/presentation/pages/intro_screen.dart';
+import 'package:cmixer/tatao_body/presentation/manager/constant.dart';
+import 'package:cmixer/tatao_body/presentation/pages/intro_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
