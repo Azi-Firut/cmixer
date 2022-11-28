@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "intro_screen_app_bar_title":
             MessageLookupByLibrary.simpleMessage("Intro"),
-        "main_app_bar": MessageLookupByLibrary.simpleMessage("C-mixer")
+        "main_app_bar": MessageLookupByLibrary.simpleMessage("C-mixer"),
+        "splash_screen_text":
+            MessageLookupByLibrary.simpleMessage("THE HIVE of art")
       };
 }

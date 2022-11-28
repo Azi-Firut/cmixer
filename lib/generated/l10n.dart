@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `THE HIVE of art`
+  String get splash_screen_text {
+    return Intl.message(
+      'THE HIVE of art',
+      name: 'splash_screen_text',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Intro`
   String get intro_screen_app_bar_title {
     return Intl.message(
