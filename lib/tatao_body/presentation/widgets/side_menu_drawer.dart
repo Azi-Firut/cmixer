@@ -1,6 +1,6 @@
 import 'package:cmixer/tatao_body/presentation/manager/constant.dart';
 import 'package:flutter/material.dart';
-import '../manager/drawer_text_animation.dart';
+import '../manager/text_animation.dart';
 
 class DrawerMenu extends StatefulWidget {
   const DrawerMenu({Key? key}) : super(key: key);
