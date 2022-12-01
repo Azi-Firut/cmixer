@@ -2,7 +2,7 @@ import 'package:expandable_menu/expandable_menu.dart';
 import 'package:flutter/material.dart';
 
 import '../../../generated/l10n.dart';
-import '../widgets/side_menu_drawer.dart';
+import '../widgets/side_menu_buttons.dart';
 
 class IntroPage extends StatefulWidget {
   const IntroPage({
@@ -26,8 +26,7 @@ class _IntroPageState extends State<IntroPage> {
 
   @override
   Widget build(BuildContext context) {
-    var h_size = MediaQuery.of(context).size.width;
-    var v_size = MediaQuery.of(context).size.height;
+    var vSize = MediaQuery.of(context).size.height;
     return Scaffold(
       // drawer: const DrawerMenu(),
       // appBar: AppBar(
@@ -40,21 +39,19 @@ class _IntroPageState extends State<IntroPage> {
             child: Text("Доступна менюха"),
           ),
           Positioned(
-            top: v_size / 20,
+            top: vSize / 20,
             left: 30.0,
             right: -30,
-            child: ExpandableMenu(
+            child: const ExpandableMenu(
               backgroundColor: Colors.black12,
               iconColor: Colors.black,
               itemContainerColor: Colors.transparent,
               width: 60.0,
               height: 60.0,
               items: [
-                Container(),
-                Container(),
-                Container(),
-                Container(),
-                Container(),
+                EmptyButton(),
+                AccountButton(),
+                CreateNewPostButton(),
               ],
             ),
           ),
