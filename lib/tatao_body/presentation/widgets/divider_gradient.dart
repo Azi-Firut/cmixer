@@ -33,25 +33,25 @@ class DividerGradientHorizontal extends StatelessWidget {
             height: heightContainerBlack,
             //width: 100,
           ),
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                stops: [0.0, 0.1, 0.3, 0.7, 0.9, 1],
-                colors: [
-                  Colors.transparent,
-                  Colors.white10,
-                  Colors.white38,
-                  Colors.white38,
-                  Colors.white10,
-                  Colors.transparent,
-                ],
-              ),
-            ),
-            height: heightContainerWhite,
-            // width: 100,
-          ),
+          // Container(
+          //   decoration: const BoxDecoration(
+          //     gradient: LinearGradient(
+          //       begin: Alignment.centerLeft,
+          //       end: Alignment.centerRight,
+          //       stops: [0.0, 0.1, 0.3, 0.7, 0.9, 1],
+          //       colors: [
+          //         Colors.transparent,
+          //         Colors.white10,
+          //         Colors.white38,
+          //         Colors.white38,
+          //         Colors.white10,
+          //         Colors.transparent,
+          //       ],
+          //     ),
+          //   ),
+          //   height: heightContainerWhite,
+          //   // width: 100,
+          // ),
         ],
       ),
     );

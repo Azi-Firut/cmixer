@@ -2,6 +2,7 @@ import 'package:expandable_menu/expandable_menu.dart';
 import 'package:flutter/material.dart';
 
 import '../../../generated/l10n.dart';
+import '../widgets/mock_post_widget.dart';
 import '../widgets/side_menu_buttons.dart';
 
 class IntroPage extends StatefulWidget {
@@ -26,17 +27,27 @@ class _IntroPageState extends State<IntroPage> {
 
   @override
   Widget build(BuildContext context) {
+    const icoAccount = AccountButton();
+    const icoAddPost = CreateNewPostButton();
+    const icoEmpty = EmptyButton();
+
     var vSize = MediaQuery.of(context).size.height;
+
     return Scaffold(
       // drawer: const DrawerMenu(),
       // appBar: AppBar(
       //   title: Text(S.of(context).intro_screen_app_bar_title),
       //   centerTitle: true,
-      // ),
+      // )
       body: Stack(
         children: [
-          const Center(
-            child: Text("Доступна менюха"),
+          Positioned(
+            child: ListView.builder(
+              itemCount: 6,
+              itemBuilder: (BuildContext context, int index) {
+                return const IntroPost();
+              },
+            ),
           ),
           Positioned(
             top: vSize / 20,
@@ -49,9 +60,9 @@ class _IntroPageState extends State<IntroPage> {
               width: 60.0,
               height: 60.0,
               items: [
-                EmptyButton(),
-                AccountButton(),
-                CreateNewPostButton(),
+                icoEmpty,
+                icoAccount,
+                icoAddPost,
               ],
             ),
           ),
