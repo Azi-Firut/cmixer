@@ -1,9 +1,6 @@
-import 'package:expandable_menu/expandable_menu.dart';
 import 'package:flutter/material.dart';
-
 import '../../../generated/l10n.dart';
 import '../widgets/mock_post_widget.dart';
-import '../widgets/side_menu_buttons.dart';
 
 class IntroPage extends StatefulWidget {
   const IntroPage({
@@ -21,24 +18,60 @@ class _IntroPageState extends State<IntroPage> {
     super.initState();
   }
 
-  void _incrementCounter() {
-    setState(() {});
-  }
+  // void _incrementCounter() {
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
-    const icoAccount = AccountButton();
-    const icoAddPost = CreateNewPostButton();
-    const icoEmpty = EmptyButton();
-
-    var vSize = MediaQuery.of(context).size.height;
+    //var vSize = MediaQuery.of(context).size.height;
 
     return Scaffold(
       // drawer: const DrawerMenu(),
-      // appBar: AppBar(
-      //   title: Text(S.of(context).intro_screen_app_bar_title),
-      //   centerTitle: true,
-      // )
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(40),
+        child: AppBar(
+          title: Text(S.of(context).intro_screen_app_bar_title),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          actions: [
+            Row(
+              children: const [
+                SizedBox(
+                  width: 40,
+                  child: MaterialButton(
+                    padding: EdgeInsets.only(right: 12.0),
+                    // height: 40.0,
+                    // minWidth: 40.0,
+                    color: Colors.white,
+                    textColor: Colors.black,
+                    onPressed: null,
+                    splashColor: Colors.white,
+                    child: Icon(
+                      Icons.account_circle_outlined,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 40,
+                  child: MaterialButton(
+                    padding: EdgeInsets.only(right: 8.0),
+                    // height: 40.0,
+                    // minWidth: 40.0,
+                    color: Colors.white,
+                    textColor: Colors.black,
+                    onPressed: null,
+                    splashColor: Colors.white,
+                    child: Icon(
+                      Icons.add_a_photo_outlined,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
       body: Stack(
         children: [
           Positioned(
@@ -49,23 +82,23 @@ class _IntroPageState extends State<IntroPage> {
               },
             ),
           ),
-          Positioned(
-            top: vSize / 20,
-            left: 30.0,
-            right: -30,
-            child: const ExpandableMenu(
-              backgroundColor: Colors.black12,
-              iconColor: Colors.black,
-              itemContainerColor: Colors.transparent,
-              width: 60.0,
-              height: 60.0,
-              items: [
-                icoEmpty,
-                icoAccount,
-                icoAddPost,
-              ],
-            ),
-          ),
+          // Positioned(
+          //   top: vSize / 20,
+          //   left: 30.0,
+          //   right: -30,
+          //   child: const ExpandableMenu(
+          //     backgroundColor: Colors.black12,
+          //     iconColor: Colors.black,
+          //     itemContainerColor: Colors.transparent,
+          //     width: 60.0,
+          //     height: 60.0,
+          //     items: [
+          //       icoEmpty,
+          //       icoAccount,
+          //       icoAddPost,
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
