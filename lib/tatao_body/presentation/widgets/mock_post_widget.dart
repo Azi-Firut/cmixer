@@ -1,5 +1,7 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:pie_menu/pie_menu.dart';
 
 class IntroPost extends StatefulWidget {
   const IntroPost({
@@ -21,13 +23,103 @@ class _IntroPostState extends State<IntroPost> {
   Widget build(BuildContext context) {
     // var hSize = MediaQuery.of(context).size.height;
     var vSize = MediaQuery.of(context).size.width;
+
+    // final List<String> imgList = [
+    //   'assets/images/noimg.jpg',
+    //   'assets/images/noimg.jpg',
+    //   'assets/images/noimg.jpg',
+    // ];
+    final List<String> imgList = [
+      'https://source.unsplash.com/random/1920x1920/?nature',
+      'https://source.unsplash.com/random/1920x1920/?fruits,flowers',
+      'https://source.unsplash.com/random/1080x640/?nature',
+      'https://source.unsplash.com/random/1920x1920/?nature',
+      'https://source.unsplash.com/random/1920x1920/?science',
+      'https://source.unsplash.com/random/1920x1920/?computer'
+    ];
     return Column(
       children: [
-        Image.asset(
-          'assets/images/noimg.jpg',
-          width: vSize,
-          height: vSize * 0.7,
-          fit: BoxFit.cover,
+        PieMenu(
+          theme: const PieTheme(
+              overlayColor: Colors.black54,
+              pointerColor: Colors.transparent,
+              buttonTheme: PieButtonTheme(
+                  backgroundColor: Colors.black87, iconColor: Colors.white),
+              buttonThemeHovered: PieButtonTheme(
+                  backgroundColor: Colors.white, iconColor: Colors.black)),
+          onTap: () => print('tap'),
+          actions: [
+            PieAction(
+              tooltip: '',
+              onSelect: () => print(''),
+              child: const Icon(
+                Icons.thumb_up_outlined,
+                //  color: Colors.black,
+              ), // Not necessarily an icon widget
+            ),
+            PieAction(
+              tooltip: "",
+              onSelect: () => print(''),
+              child: const Icon(
+                Icons.mode_comment_outlined,
+                //  color: Colors.black,
+              ), // Not necessarily an icon widget
+            ),
+            PieAction(
+              tooltip: '',
+              onSelect: () => print(''),
+              child: const Icon(
+                Icons.thumb_down_outlined,
+                //  color: Colors.black,
+              ), // Not necessarily an icon widget
+            ),
+          ],
+          // child: Image.asset(
+          //   'assets/images/noimg.jpg',
+          //   width: vSize,
+          //   height: vSize * 0.7,
+          //   fit: BoxFit.cover,
+          // ),
+          child: FlutterCarousel(
+            options: CarouselOptions(
+              height: vSize * 0.7,
+              viewportFraction: 1.0,
+              enlargeCenterPage: false,
+              autoPlay: false,
+              enableInfiniteScroll: true,
+              autoPlayInterval: const Duration(seconds: 7),
+              autoPlayAnimationDuration: const Duration(microseconds: 600),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              slideIndicator: CircularWaveSlideIndicator(
+                indicatorRadius: 4,
+                itemSpacing: 12,
+                indicatorBorderColor: Colors.black,
+                indicatorBorderWidth: 0.1,
+                indicatorBackgroundColor: Colors.white54,
+              ),
+            ),
+            items: imgList
+                .map((item) => Center(
+                        child: Image.network(
+                      item,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      height: vSize * 0.7,
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return const Center(
+                          child: CircularProgressIndicator(
+                              // value: loadingProgress.expectedTotalBytes != null
+                              //     ? loadingProgress.cumulativeBytesLoaded /
+                              //         loadingProgress.expectedTotalBytes!
+                              //     : null,
+                              ),
+                        );
+                      },
+                    )))
+                .toList(),
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
