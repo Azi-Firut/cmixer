@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cmixer/tatao_body/presentation/manager/constant.dart';
-import 'package:cmixer/tatao_body/presentation/pages/intro_screen.dart';
+import 'package:cmixer/tatao_body/presentation/pages/main_posts_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     Timer(const Duration(seconds: 4), () {
       setState(() {
-        Navigator.pushReplacement(context, PageTransition(const IntroPage()));
+        Navigator.pushReplacement(context, PageTransition(const MainPage()));
       });
     });
   }

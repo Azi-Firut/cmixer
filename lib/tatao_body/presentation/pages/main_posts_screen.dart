@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:pie_menu/pie_menu.dart';
 import '../../../generated/l10n.dart';
-import '../widgets/mock_post_widget.dart';
+import '../widgets/main_post_widget.dart';
+import 'add_post_screen.dart';
 
-class IntroPage extends StatefulWidget {
-  const IntroPage({
+class MainPage extends StatefulWidget {
+  const MainPage({
     super.key,
   });
 
   @override
-  State<IntroPage> createState() => _IntroPageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _IntroPageState extends State<IntroPage> {
+class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     // TODO: implement load firebase data
@@ -38,13 +39,12 @@ class _IntroPageState extends State<IntroPage> {
             backgroundColor: Colors.white,
             actions: [
               Row(
-                children: const [
-                  SizedBox(
+                children: [
+                  const SizedBox(
                     width: 40,
                     child: MaterialButton(
+                      elevation: 0,
                       padding: EdgeInsets.only(right: 12.0),
-                      // height: 40.0,
-                      // minWidth: 40.0,
                       color: Colors.white,
                       textColor: Colors.black,
                       onPressed: null,
@@ -57,14 +57,19 @@ class _IntroPageState extends State<IntroPage> {
                   SizedBox(
                     width: 40,
                     child: MaterialButton(
-                      padding: EdgeInsets.only(right: 8.0),
-                      // height: 40.0,
-                      // minWidth: 40.0,
+                      elevation: 0,
+                      padding: const EdgeInsets.only(right: 8.0),
                       color: Colors.white,
                       textColor: Colors.black,
-                      onPressed: null,
                       splashColor: Colors.white,
-                      child: Icon(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AddPostScreen()),
+                        );
+                      },
+                      child: const Icon(
                         Icons.add_a_photo_outlined,
                       ),
                     ),
@@ -80,7 +85,7 @@ class _IntroPageState extends State<IntroPage> {
               child: ListView.builder(
                 itemCount: 6,
                 itemBuilder: (BuildContext context, int index) {
-                  return const IntroPost();
+                  return const MainPostWidget();
                 },
               ),
             ),

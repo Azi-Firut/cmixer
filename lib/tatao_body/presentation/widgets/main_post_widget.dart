@@ -1,18 +1,21 @@
+import 'dart:ui';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:pie_menu/pie_menu.dart';
 
-class IntroPost extends StatefulWidget {
-  const IntroPost({
+class MainPostWidget extends StatefulWidget {
+  const MainPostWidget({
     super.key,
   });
 
   @override
-  State<IntroPost> createState() => _IntroPostState();
+  State<MainPostWidget> createState() => _MainPostWidgetState();
 }
 
-class _IntroPostState extends State<IntroPost> {
+class _MainPostWidgetState extends State<MainPostWidget> {
   @override
   void initState() {
     // TODO: implement load firebase data
@@ -37,49 +40,47 @@ class _IntroPostState extends State<IntroPost> {
       'https://source.unsplash.com/random/1920x1920/?science',
       'https://source.unsplash.com/random/1920x1920/?computer'
     ];
+
+    double _sigmaX = 10.0; // from 0-10
+    double _sigmaY = 10.0; // from 0-10
+    double _opacity = 0.1; // from 0-1.0
+
     return Column(
       children: [
         PieMenu(
           theme: const PieTheme(
-              overlayColor: Colors.black54,
-              pointerColor: Colors.transparent,
-              buttonTheme: PieButtonTheme(
-                  backgroundColor: Colors.black87, iconColor: Colors.white),
-              buttonThemeHovered: PieButtonTheme(
-                  backgroundColor: Colors.white, iconColor: Colors.black)),
-          onTap: () => print('tap'),
+            menuBounceDepth: 1,
+            overlayColor: Colors.black54,
+            pointerColor: Colors.transparent,
+            buttonTheme: PieButtonTheme(
+                backgroundColor: Colors.black87, iconColor: Colors.white),
+            buttonThemeHovered: PieButtonTheme(
+                backgroundColor: Colors.white, iconColor: Colors.black),
+          ),
+          onTap: () {},
           actions: [
             PieAction(
               tooltip: '',
-              onSelect: () => print(''),
+              onSelect: () {},
               child: const Icon(
                 Icons.thumb_up_outlined,
-                //  color: Colors.black,
-              ), // Not necessarily an icon widget
+              ),
             ),
             PieAction(
               tooltip: "",
-              onSelect: () => print(''),
+              onSelect: () {},
               child: const Icon(
                 Icons.mode_comment_outlined,
-                //  color: Colors.black,
-              ), // Not necessarily an icon widget
+              ),
             ),
             PieAction(
               tooltip: '',
-              onSelect: () => print(''),
+              onSelect: () {},
               child: const Icon(
                 Icons.thumb_down_outlined,
-                //  color: Colors.black,
-              ), // Not necessarily an icon widget
+              ),
             ),
           ],
-          // child: Image.asset(
-          //   'assets/images/noimg.jpg',
-          //   width: vSize,
-          //   height: vSize * 0.7,
-          //   fit: BoxFit.cover,
-          // ),
           child: FlutterCarousel(
             options: CarouselOptions(
               height: vSize * 0.7,
@@ -99,25 +100,39 @@ class _IntroPostState extends State<IntroPost> {
               ),
             ),
             items: imgList
-                .map((item) => Center(
-                        child: Image.network(
-                      item,
+                .map(
+                  (item) => Center(
+                    child: CachedNetworkImage(
+                      memCacheHeight: 500,
+                      memCacheWidth: 800,
+                      imageUrl: item,
                       width: double.infinity,
                       fit: BoxFit.cover,
                       height: vSize * 0.7,
-                      loadingBuilder: (BuildContext context, Widget child,
-                          ImageChunkEvent? loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return const Center(
-                          child: CircularProgressIndicator(
-                              // value: loadingProgress.expectedTotalBytes != null
-                              //     ? loadingProgress.cumulativeBytesLoaded /
-                              //         loadingProgress.expectedTotalBytes!
-                              //     : null,
-                              ),
-                        );
-                      },
-                    )))
+                      placeholder: (context, url) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                    // child: Image.network(
+                    //   item,
+                    //   width: double.infinity,
+                    //   fit: BoxFit.cover,
+                    //   height: vSize * 0.7,
+                    //   loadingBuilder: (BuildContext context, Widget child,
+                    //       ImageChunkEvent? loadingProgress) {
+                    //     if (loadingProgress == null) return child;
+                    //     return const Center(
+                    //       child: CircularProgressIndicator(
+                    //           // value: loadingProgress.expectedTotalBytes != null
+                    //           //     ? loadingProgress.cumulativeBytesLoaded /
+                    //           //         loadingProgress.expectedTotalBytes!
+                    //           //     : null,
+                    //           ),
+                    //     );
+                    //   },
+                    // ),
+                  ),
+                )
                 .toList(),
           ),
         ),

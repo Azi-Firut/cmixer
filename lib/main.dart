@@ -1,3 +1,4 @@
+import 'package:cmixer/tatao_body/presentation/manager/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -44,12 +45,14 @@ class Cmix extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+
+      /// Add localization
       supportedLocales: S.delegate.supportedLocales,
-      // Add localization
+
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-      ),
+      // theme: ThemeData(
+      //   primarySwatch: MaterialColor(primary, swatch),
+      // ),
       home: const SplashScreen(),
     );
   }
