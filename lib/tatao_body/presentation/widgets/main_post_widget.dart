@@ -27,11 +27,11 @@ class _MainPostWidgetState extends State<MainPostWidget> {
     // var hSize = MediaQuery.of(context).size.height;
     var vSize = MediaQuery.of(context).size.width;
 
-    // final List<String> imgList = [
-    //   'assets/images/noimg.jpg',
-    //   'assets/images/noimg.jpg',
-    //   'assets/images/noimg.jpg',
-    // ];
+    final List<String> img1List = [
+      'assets/images/noimg.jpg',
+      'assets/images/noimg.jpg',
+      'assets/images/noimg.jpg',
+    ];
     final List<String> imgList = [
       'https://source.unsplash.com/random/1920x1920/?nature',
       'https://source.unsplash.com/random/1920x1920/?fruits,flowers',
@@ -101,35 +101,25 @@ class _MainPostWidgetState extends State<MainPostWidget> {
             ),
             items: imgList
                 .map(
-                  (item) => Center(
-                    child: CachedNetworkImage(
-                      memCacheHeight: 500,
-                      memCacheWidth: 800,
+                  (item) => CachedNetworkImage(
+                    memCacheHeight: 500,
+                    memCacheWidth: 800,
+                    imageUrl: item,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    height: vSize * 0.7,
+                    placeholder: (context, url) => CachedNetworkImage(
+                      memCacheHeight: 50,
+                      memCacheWidth: 80,
                       imageUrl: item,
                       width: double.infinity,
                       fit: BoxFit.cover,
                       height: vSize * 0.7,
-                      placeholder: (context, url) => const Center(
-                        child: CircularProgressIndicator(),
-                      ),
                     ),
-                    // child: Image.network(
-                    //   item,
-                    //   width: double.infinity,
-                    //   fit: BoxFit.cover,
-                    //   height: vSize * 0.7,
-                    //   loadingBuilder: (BuildContext context, Widget child,
-                    //       ImageChunkEvent? loadingProgress) {
-                    //     if (loadingProgress == null) return child;
-                    //     return const Center(
-                    //       child: CircularProgressIndicator(
-                    //           // value: loadingProgress.expectedTotalBytes != null
-                    //           //     ? loadingProgress.cumulativeBytesLoaded /
-                    //           //         loadingProgress.expectedTotalBytes!
-                    //           //     : null,
-                    //           ),
-                    //     );
-                    //   },
+
+                    //) CachedNetworkImage(imageUrl:item,memCacheHeight: 50,memCacheWidth: 50,),
+                    //     (context, url) => const Center(
+                    //   child: CircularProgressIndicator(),
                     // ),
                   ),
                 )
