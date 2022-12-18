@@ -5,6 +5,7 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:pie_menu/pie_menu.dart';
+import '../../../generated/l10n.dart';
 
 class MainPostWidget extends StatefulWidget {
   const MainPostWidget({
@@ -24,14 +25,8 @@ class _MainPostWidgetState extends State<MainPostWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // var hSize = MediaQuery.of(context).size.height;
-    var vSize = MediaQuery.of(context).size.width;
+    var hSize = MediaQuery.of(context).size.width;
 
-    final List<String> img1List = [
-      'assets/images/noimg.jpg',
-      'assets/images/noimg.jpg',
-      'assets/images/noimg.jpg',
-    ];
     final List<String> imgList = [
       'https://source.unsplash.com/random/1920x1920/?nature',
       'https://source.unsplash.com/random/1920x1920/?fruits,flowers',
@@ -40,10 +35,6 @@ class _MainPostWidgetState extends State<MainPostWidget> {
       'https://source.unsplash.com/random/1920x1920/?science',
       'https://source.unsplash.com/random/1920x1920/?computer'
     ];
-
-    double _sigmaX = 10.0; // from 0-10
-    double _sigmaY = 10.0; // from 0-10
-    double _opacity = 0.1; // from 0-1.0
 
     return Column(
       children: [
@@ -81,49 +72,83 @@ class _MainPostWidgetState extends State<MainPostWidget> {
               ),
             ),
           ],
-          child: FlutterCarousel(
-            options: CarouselOptions(
-              height: vSize * 0.7,
-              viewportFraction: 1.0,
-              enlargeCenterPage: false,
-              autoPlay: false,
-              enableInfiniteScroll: true,
-              autoPlayInterval: const Duration(seconds: 7),
-              autoPlayAnimationDuration: const Duration(microseconds: 600),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              slideIndicator: CircularWaveSlideIndicator(
-                indicatorRadius: 4,
-                itemSpacing: 12,
-                indicatorBorderColor: Colors.black,
-                indicatorBorderWidth: 0.1,
-                indicatorBackgroundColor: Colors.white54,
-              ),
-            ),
-            items: imgList
-                .map(
-                  (item) => CachedNetworkImage(
-                    memCacheHeight: 500,
-                    memCacheWidth: 800,
-                    imageUrl: item,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    height: vSize * 0.7,
-                    placeholder: (context, url) => CachedNetworkImage(
-                      memCacheHeight: 50,
-                      memCacheWidth: 80,
-                      imageUrl: item,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                      height: vSize * 0.7,
-                    ),
-
-                    //) CachedNetworkImage(imageUrl:item,memCacheHeight: 50,memCacheWidth: 50,),
-                    //     (context, url) => const Center(
-                    //   child: CircularProgressIndicator(),
-                    // ),
+          child: Stack(
+            children: [
+              FlutterCarousel(
+                options: CarouselOptions(
+                  height: hSize * 0.7,
+                  viewportFraction: 1.0,
+                  enlargeCenterPage: false,
+                  autoPlay: false,
+                  enableInfiniteScroll: true,
+                  autoPlayInterval: const Duration(seconds: 7),
+                  autoPlayAnimationDuration: const Duration(microseconds: 600),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  slideIndicator: CircularWaveSlideIndicator(
+                    indicatorRadius: 4,
+                    itemSpacing: 12,
+                    indicatorBorderColor: Colors.black,
+                    indicatorBorderWidth: 0.1,
+                    indicatorBackgroundColor: Colors.white54,
                   ),
-                )
-                .toList(),
+                ),
+                items: imgList
+                    .map(
+                      (item) => CachedNetworkImage(
+                        memCacheHeight: ((hSize * 0.7) * 1.5).toInt(),
+                        memCacheWidth: (hSize * 1.5).toInt(),
+                        imageUrl: item,
+                        width: hSize,
+                        fit: BoxFit.fitHeight,
+                        height: hSize * 0.7,
+                        placeholder: (context, url) => ImageFiltered(
+                          imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                          child: CachedNetworkImage(
+                            // placeholder: (context, url) => const Center(
+                            //   child: CircularProgressIndicator(),
+                            // ),
+                            memCacheHeight: 50,
+                            memCacheWidth: 80,
+                            imageUrl: item,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            height: hSize * 0.7,
+                          ),
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+              Container(
+                height: 2,
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 1,
+                        spreadRadius: 1,
+                        offset: Offset(0, 0)),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                //height: 10,
+                child: Container(
+                  width: hSize,
+                  height: 2,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 1,
+                          spreadRadius: 1,
+                          offset: Offset(0, 0)),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
         Row(
@@ -163,45 +188,19 @@ class _MainPostWidgetState extends State<MainPostWidget> {
               ],
             ),
             const Spacer(),
-            // Padding(
-            //   padding: const EdgeInsets.only(right: 12.0),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.end,
-            //     mainAxisAlignment: MainAxisAlignment.end,
-            //     children: const [
-            //       Text(
-            //         "18:30",
-            //         style: TextStyle(
-            //           fontWeight: FontWeight.w300,
-            //         ),
-            //       ),
-            //       Text(
-            //         "20.02.2023",
-            //         style: TextStyle(
-            //           fontWeight: FontWeight.w300,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // )
           ],
         ),
-        const SizedBox(
+        SizedBox(
           width: double.infinity,
           child: Padding(
-            padding: EdgeInsets.only(right: 12.0, left: 12, bottom: 8),
+            padding: const EdgeInsets.only(right: 12.0, left: 12, bottom: 8),
             child: ExpandableText(
               'Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet,',
-              expandText: 'more',
-              collapseText: 'less',
+              expandText: S.of(context).overflow_expand_text,
+              collapseText: S.of(context).overflow_collapse_text,
               maxLines: 3,
               linkColor: Colors.redAccent,
             ),
-            // Text(
-            //   "SQL basics",
-            //   overflow: TextOverflow.ellipsis,
-            //   maxLines: 3,
-            // ),
           ),
         ),
         SizedBox(

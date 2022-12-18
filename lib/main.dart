@@ -1,4 +1,7 @@
 import 'package:cmixer/tatao_body/presentation/manager/constant.dart';
+import 'package:cmixer/tatao_body/presentation/pages/add_post_screen.dart';
+import 'package:cmixer/tatao_body/presentation/pages/main_posts_screen.dart';
+import 'package:cmixer/tatao_body/presentation/widgets/main_post_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -50,10 +53,9 @@ class Cmix extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
 
       debugShowCheckedModeBanner: false,
-      // theme: ThemeData(
-      //   primarySwatch: MaterialColor(primary, swatch),
-      // ),
-      home: const SplashScreen(),
+      //home: const MainPage(),
+      home: const AddPostScreen(),
+      //home: const SplashScreen(),
     );
   }
 }

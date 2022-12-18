@@ -31,7 +31,13 @@ class _AddPostScreen extends State<AddPostScreen> {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(40),
           child: AppBar(
-            title: Text(S.of(context).intro_screen_app_bar_title),
+            title: Text(
+              S.of(context).add_post_screen_app_bar_title.toUpperCase(),
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 15,
+              ),
+            ),
             centerTitle: true,
             backgroundColor: Colors.white,
             actions: [

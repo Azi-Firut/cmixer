@@ -79,6 +79,36 @@ class S {
       args: [],
     );
   }
+
+  /// `add new art`
+  String get add_post_screen_app_bar_title {
+    return Intl.message(
+      'add new art',
+      name: 'add_post_screen_app_bar_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `more`
+  String get overflow_expand_text {
+    return Intl.message(
+      'more',
+      name: 'overflow_expand_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `less`
+  String get overflow_collapse_text {
+    return Intl.message(
+      'less',
+      name: 'overflow_collapse_text',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

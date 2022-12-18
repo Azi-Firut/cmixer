@@ -2,5 +2,8 @@
   "@@locale": "en",
   "main_app_bar": "C-mixer",
   "splash_screen_text": "THE HIVE of art",
-  "intro_screen_app_bar_title": "Intro"
+  "intro_screen_app_bar_title": "Intro",
+  "add_post_screen_app_bar_title": "add new art",
+  "overflow_expand_text": "more",
+  "overflow_collapse_text": "less"
 }
